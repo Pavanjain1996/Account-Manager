@@ -1,0 +1,339 @@
+{% extends 'Template.html' %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+<br/>
+<nav class="navbar navbar-expand-lg navbar-light" style="background:none;">
+<a class="navbar-brand" href="#" style="font-size:35px;color:#8BDA64;"><img src="{% static 'Logo.png' %}" width="100px;">Accounts</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<i class="fa fa-bars" aria-hidden="true" style="color:#8BDA64;"></i>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item active"><a class="nav-link" href="#" style="font-size:25px;color:#8BDA64;">{{user.username}}<span class="sr-only">(current)</span></a></li>
+<li class="nav-item active"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter" style="font-size:25px;color:#8BDA64;" onmouseover="this.style.textDecoration='none';"><i class="fa fa-plus-circle"></i> Bank Account</button></li>
+<li class="nav-item active"><a class="nav-link" href="/Logout" style="font-size:25px;color:#8BDA64;">Logout<span class="sr-only">(current)</span></a></li>
+<form method="post" action="/addBankAccount/">
+{% csrf_token %}
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+<div class="modal-content">
+<div class="modal-header" style="background-color:#8BDA64;color:white;">
+<h5 class="modal-title" id="exampleModalCenterTitle">Add New Bank Account</h5>
+</div>
+<div class="modal-body" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('{% static 'Photo.jpg' %}');background-size:cover;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="text" class="form-control" name="name" placeholder="Account Holder" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="text" class="form-control" name="bank" placeholder="Bank Name" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="account_no" placeholder="Account Number" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="text" class="form-control" name="IFSC" placeholder="IFSC Code" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="atm_card_no" placeholder="ATM Card Number" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="cvv" placeholder="CVV" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="atm_pin" placeholder="ATM Pin" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="text" class="form-control" name="card_expiry" placeholder="Expiry Date" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="net_banking_id" placeholder="Net Banking Id" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="password" class="form-control" name="signin_password" placeholder="Sign In Password" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="password" class="form-control" name="transaction_password" placeholder="Transaction Password" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">-></span></span>
+</div>
+<input type="number" class="form-control" name="mob_banking_pin" placeholder="Mobile Banking Pin" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;" required>
+</div></div>
+</div>
+</div>
+</div>
+<div class="modal-footer" style="background-color:#8BDA64;color:white;">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="submit" class="btn btn-primary">Add Account</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</nav>
+<br/><br/>
+<div class="container" style="background-color:#8BDA64;color:white;font-weight:bold;padding:10px;text-align:center;font-size:20px;">
+<div class="row">
+<div class="col">{{a}} User Accounts and {{b}} Bank Accounts</div>
+</div></div>
+<div style="padding:20px;">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10" style="padding:20px;text-align:center;border:2px dashed #8BDA64;">
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span class="fa fa-address-book" style="color:#8BDA64;font-size:30px;"></span></span>
+</div>
+<input type="text" class="form-control" id="searchtext" placeholder="Account Name" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;">
+</div><br/>
+<button type="button" class="btn btn-primary" style="background-color:#8BDA64;border:none;width:150px;font-weight:bold;" onclick="findAccount()">Search</button>
+<br/><br/>
+<div id="accounts"></div>
+</div>
+<div class="col-md-1"></div>
+</div>
+<br/><br/>
+<div class="row">
+<div class="col-md-5">
+<div style="padding:20px;text-align:center;border:2px dashed #8BDA64;">
+<div class="alert alert-primary" role="alert" style="background-color:#8BDA64;font-size:25px;color:white;">Add Account</div>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">N</span></span>
+</div>
+<input type="text" class="form-control" id="name" placeholder="Account Name" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;">
+</div><br/>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">U</span></span>
+</div>
+<input type="text" class="form-control" id="username" placeholder="Account Username" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;">
+</div><br/>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">P</span></span>
+</div>
+<input type="text" class="form-control" id="password" placeholder="Account Password" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;">
+</div><br/>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1" style="background:none;border:none;"><span style="color:#8BDA64;font-size:30px;">P</span></span>
+</div>
+<input type="text" class="form-control" id="pin" placeholder="Account PIN" style="background:none;border:none;border-bottom:4px solid #8BDA64;font-size:25px;color:white;">
+</div><br/>
+<button type="button" class="btn btn-primary" style="background-color:#8BDA64;border:none;font-weight:bold;" onclick="addAccount()">Add Account</button>
+<br/><br/>
+</div>
+</div>
+<div class="col-md-1"></div>
+<br/><br/>
+<div class="col-md-6">
+<div style="padding:20px;text-align:center;border:2px dashed #8BDA64;">
+<div class="alert alert-primary" role="alert" style="background-color:#8BDA64;font-size:25px;color:white;">Bank Accounts</div>
+<hr style="height:4px;background-color:white;"/>
+{% for i in data %}
+<a class="btn btn-primary" style="width:100%;" data-toggle="collapse" href="#collapseExample{{i.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">{{i.bank}}</a>
+<div class="collapse" id="collapseExample{{i.id}}">
+<div class="card card-body" style="background-color:#8BDA64;color:white;">
+<div class="container">
+<div class="row" style="font-weight:bold;">
+<div class="col-md-4"><span style="color:black;">Name</span><br/>{{i.name}}</div>
+<div class="col-md-4"><span style="color:black;">Account No.</span><br/>{{i.account_no}}</div>
+<div class="col-md-4"><span style="color:black;">IFSC Code</span><br/>{{i.IFSC}}</div>
+</div><br/>
+<div class="row" style="color:black;font-weight:bold;">
+<div class="col-md-6">
+<button type="button" class="btn btn-primary" style="border:none;font-weight:bold;width:100%;" onclick="getBankAccountDetails({{i.id}})">Send Details</button>
+<br/><br/>
+</div>
+<div class="col-md-6">
+<a class="btn btn-primary" style="border:none;font-weight:bold;width:100%;" href="/deleteBankAccount/{{i.id}}">Delete Account</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr style="height:4px;background-color:white;"/>
+{% endfor %}
+</div>
+</div>
+</div>
+</div>
+</div>
+<br/><br/>
+<script>
+function findAccount(){
+	var account = document.getElementById("searchtext").value;
+	var url = "/findAccount?account="+account;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("accounts").innerHTML = req.responseText;
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+}
+function sendDetails(id){
+	var url = "/sendDetails?id="+id;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert(req.responseText);
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+}
+function addAccount(){
+	var name = document.getElementById("name").value;
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	var pin = document.getElementById("pin").value;
+	var url = "/addAccount?name="+name+"&username="+username+"&password="+password+"&pin="+pin;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert(req.responseText);
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+	document.getElementById("name").value = "";
+	document.getElementById("username").value = "";
+	document.getElementById("password").value = "";
+	document.getElementById("pin").value = "";
+}
+function deleteAccount(id){
+	var url = "/deleteAccount?id="+id;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert(req.responseText);
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+	document.getElementById("accounts").innerHTML = "";
+}
+function updateDetails(id){
+	document.getElementById("accounts").innerHTML = "";
+	var url = "/updateAccount?id="+id;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("accounts").innerHTML = req.responseText;
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+}
+function updateIt(id){
+	var name = document.getElementById("name1").value;
+	var username = document.getElementById("username1").value;
+	var password = document.getElementById("password1").value;
+	var pin = document.getElementById("pin1").value;
+	var url = "/updateIt?id="+id+"&name="+name+"&username="+username+"&password="+password+"&pin="+pin;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("accounts").innerHTML = "";
+			alert(req.responseText);
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+}
+function getBankAccountDetails(id){
+	var url = "/getBankAccountDetails?id="+id;
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert(req.responseText);
+		}
+	};
+	req.open("GET", url, true);
+	req.send();
+}
+</script>
+{% else %}
+<div class="container">
+<div class="row" style="padding:20px;text-align:center;">
+<div class="col">
+<br/><br/>
+<div style="font-size:30px;color:white;border-bottom:5px solid #8BDA64;padding:5px;">You have been logged out of the session</div>
+<br/><br/>
+<div style="font-size:25px;"><a href="/" class="btn btn-secondary" style="font-size:25px;border:none;font-weight:bold;">Click</a> <span style="color:#8BDA64;">here to login again</span></div>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}
